@@ -41,7 +41,7 @@ namespace OLLcreator
             //create oll builders
             StringBuilder sb = new StringBuilder();
 
-            sb = create_OLL(sb);//create the oll contents
+            sb = create_OLL(sb, "");//create the oll contents
 
             //output oll
             string folder = "";
@@ -56,13 +56,48 @@ namespace OLLcreator
             MessageBox.Show(".OLL Created");
         }
 
-        private StringBuilder create_OLL(StringBuilder sb)//TODO
+        private StringBuilder create_OLL(StringBuilder sb, string previousFolders)//TODO
         {
+
+            //find any subfolders
+            string[] folders = { };
+            if (previousFolders.Equals(""))
+            {
+                folders = Directory.GetDirectories(sourceFolderText);
+            }
+            else
+            {
+                folders = Directory.GetDirectories(previousFolders);
+            }
+            
+            //go into other folders recursively 
+            if(folders != null)
+            {
+                for (int i = 0; i < folders.Length; i++)
+                {
+                    //get folder names
+                    string folderName = folders[i];
+                    if (!previousFolders.Equals(""))
+                    {
+                        //folderName = previousFolders + "\\" + folders[i];
+                        folderName = folders[i];
+                    }
+                    //go down the trail
+                    sb = create_OLL(sb, folderName);
+                }
+            }
+
+
+
             //store all of the files in an array
             string[] files = Directory.GetFiles(sourceFolderText);
-            //MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
 
-            
+            if (!previousFolders.Equals(""))
+            {
+                files = Directory.GetFiles(previousFolders);
+            }
+                
+            //MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
 
             //look at each file,check for number of pages, and send each page to format_OLL
             for (int i = 0; i < files.Length; i++)// TODO: Add progress bar
@@ -72,7 +107,7 @@ namespace OLLcreator
                 if(info.Extension.Equals(".pdf"))//pdf
                 {
                     int pages = getNumberOfPdfPages(files[i]);//get number of pages and send to formatter
-                    sb = format_OLL(files[i], pages, 5, sb);
+                    sb = format_OLL(files[i], pages, 5, sb, previousFolders);
                 }
                 else if (info.Extension.Equals(".tiff") || info.Extension.Equals(".tif"))//tiff TODO
                 {
@@ -82,15 +117,15 @@ namespace OLLcreator
                     {
                         pages = getNumberofTiffPages(tiffFromFile);
                     }
-                    sb = format_OLL(files[i], pages, 1, sb);
+                    sb = format_OLL(files[i], pages, 1, sb, previousFolders);
                 }
                 else if (info.Extension.Equals(".mpg") || info.Extension.Equals(".avi") || info.Extension.Equals(".mp4") || info.Extension.Equals(".wmv"))//media TODO, add other media types as well
                 {
-                    sb = format_OLL(files[i], 1, 4, sb);
+                    sb = format_OLL(files[i], 1, 4, sb, previousFolders);
                 }
                 else //other (assumes everything that is other is a single page photo)
                 {
-                    sb = format_OLL(files[i], 1, 2, sb);
+                    sb = format_OLL(files[i], 1, 2, sb, previousFolders);
                 }
                 
                 
@@ -100,7 +135,7 @@ namespace OLLcreator
             
         }
 
-        private StringBuilder format_OLL(string sourceFile, int pageNumber, int fileType, StringBuilder sb)//TODO
+        private StringBuilder format_OLL(string sourceFile, int pageNumber, int fileType, StringBuilder sb, string previousFolders)//TODO
         {
             //Send each page of a document to the formatter, format_OLL_Page.
             //get a string back that gets appended to the oll
@@ -114,7 +149,7 @@ namespace OLLcreator
                     //string pageName = pdfReader.GetPageN(i).ToString();//this is not correct TODO
                     //for now it just puts in standard formatting, should have an if that will use this or use the real name
                     string pageName = Path.GetFileNameWithoutExtension(sourceFile) + "-" + leadingZeros(i);
-                    ollLine = format_OLL_Page(sourceFile, i, fileType, pageName);
+                    ollLine = format_OLL_Page(sourceFile, i, fileType, pageName, previousFolders);
                     sb.AppendLine(ollLine);
                 }
                 //add for tiff and other TODO
@@ -122,13 +157,13 @@ namespace OLLcreator
                 {
                     //for now it just puts in standard formatting, should have an if that will use this or use the real name
                     string pageName = Path.GetFileNameWithoutExtension(sourceFile) + "-" + leadingZeros(i);
-                    ollLine = format_OLL_Page(sourceFile, i, fileType, pageName);
+                    ollLine = format_OLL_Page(sourceFile, i, fileType, pageName, previousFolders);
                     sb.AppendLine(ollLine);
                 }
                 else
                 {
                     string pageName = Path.GetFileNameWithoutExtension(sourceFile) + "-" + leadingZeros(i);
-                    ollLine = format_OLL_Page(sourceFile, i, fileType, pageName);
+                    ollLine = format_OLL_Page(sourceFile, i, fileType, pageName, previousFolders);
                     sb.AppendLine(ollLine);
                 }
             }
@@ -137,7 +172,7 @@ namespace OLLcreator
             return sb;
         }
 
-        private string format_OLL_Page(string sourceFile, int pageNumber, int fileType, string pageName)
+        private string format_OLL_Page(string sourceFile, int pageNumber, int fileType, string pageName, string previousFolders)
         {
             //Takes the input file and its page number and outputs a string that is one line of the oll.
             //For multi page files this would be run for each page.
@@ -147,10 +182,13 @@ namespace OLLcreator
 
 
             string docID = Path.GetFileNameWithoutExtension(sourceFile);
+            //to get the folder path it takes the orginal folder path and finds the index before the source folder
+            //it then goes from that point forward to the source of the file
             string path = Path.GetDirectoryName(sourceFile);
             string folder = "";
-            int index = path.LastIndexOf('\\');
+            int index = sourceFolderText.LastIndexOf('\\');
             folder = path.Substring(index, path.Length - index);
+
             string filename = Path.GetFileName(sourceFile);
             output = "\"" + fileType + "\",\"" + docID + "\",\"" + pageName + "\",\"" + pageNumber + "\",\"\",\"\",\"" + folder + "\",\"" + filename + "\",\"\"";
             //MessageBox.Show(output);
