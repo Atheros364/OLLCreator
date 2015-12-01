@@ -33,6 +33,8 @@
             this.textBox_Source = new System.Windows.Forms.TextBox();
             this.button_Source = new System.Windows.Forms.Button();
             this.button_Create = new System.Windows.Forms.Button();
+            this.checkModify = new System.Windows.Forms.CheckBox();
+            this.label_Status = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_Instructions
@@ -76,7 +78,7 @@
             // 
             // button_Create
             // 
-            this.button_Create.Location = new System.Drawing.Point(123, 231);
+            this.button_Create.Location = new System.Drawing.Point(57, 230);
             this.button_Create.Name = "button_Create";
             this.button_Create.Size = new System.Drawing.Size(75, 23);
             this.button_Create.TabIndex = 7;
@@ -84,19 +86,39 @@
             this.button_Create.UseVisualStyleBackColor = true;
             this.button_Create.Click += new System.EventHandler(this.button_Create_Click);
             // 
+            // checkModify
+            // 
+            this.checkModify.AutoSize = true;
+            this.checkModify.Location = new System.Drawing.Point(219, 234);
+            this.checkModify.Name = "checkModify";
+            this.checkModify.Size = new System.Drawing.Size(82, 17);
+            this.checkModify.TabIndex = 8;
+            this.checkModify.Text = "Modify Path";
+            this.checkModify.UseVisualStyleBackColor = true;
+            this.checkModify.CheckedChanged += new System.EventHandler(this.checkModify_CheckedChanged);
+            // 
+            // label_Status
+            // 
+            this.label_Status.AutoSize = true;
+            this.label_Status.Location = new System.Drawing.Point(16, 276);
+            this.label_Status.Name = "label_Status";
+            this.label_Status.Size = new System.Drawing.Size(0, 13);
+            this.label_Status.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 286);
+            this.ClientSize = new System.Drawing.Size(344, 301);
+            this.Controls.Add(this.label_Status);
+            this.Controls.Add(this.checkModify);
             this.Controls.Add(this.button_Create);
             this.Controls.Add(this.button_Source);
             this.Controls.Add(this.textBox_Source);
             this.Controls.Add(this.label_Source);
             this.Controls.Add(this.label_Instructions);
             this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "OLL Creator";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,6 +132,8 @@
         private System.Windows.Forms.Button button_Source;
         private System.Windows.Forms.Button button_Create;
         private string sourceFolderText = "";
+        private System.Windows.Forms.CheckBox checkModify;
+        private System.Windows.Forms.Label label_Status;
     }
 }
 

@@ -13,3 +13,7 @@ C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin
 C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\itextsharp.xml
 C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\BitMiracle.LibTiff.NET.dll
 C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\BitMiracle.LibTiff.NET.xml
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\OLLcreator.exe.manifest
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\OLLcreator.application
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\obj\Debug\OLLcreator.exe.manifest
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\obj\Debug\OLLcreator.application
