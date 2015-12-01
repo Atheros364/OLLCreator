@@ -1,0 +1,3 @@
+C:\Users\aruth\AppData\Local\Temporary Projects\OLLcreator\bin\Debug\OLLcreator.exe.config
+C:\Users\aruth\Documents\Visual Studio 2015\Projects\OLLcreator\OLLcreator\bin\Debug\OLLcreator.exe.config
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\OLLcreator.exe.config
