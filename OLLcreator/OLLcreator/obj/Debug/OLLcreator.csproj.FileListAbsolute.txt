@@ -1,3 +1,15 @@
 C:\Users\aruth\AppData\Local\Temporary Projects\OLLcreator\bin\Debug\OLLcreator.exe.config
 C:\Users\aruth\Documents\Visual Studio 2015\Projects\OLLcreator\OLLcreator\bin\Debug\OLLcreator.exe.config
 C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\OLLcreator.exe.config
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\OLLcreator.exe
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\OLLcreator.pdb
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\obj\Debug\OLLcreator.csprojResolveAssemblyReference.cache
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\obj\Debug\OLLcreator.Form1.resources
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\obj\Debug\OLLcreator.Properties.Resources.resources
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\obj\Debug\OLLcreator.csproj.GenerateResource.Cache
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\obj\Debug\OLLcreator.exe
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\obj\Debug\OLLcreator.pdb
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\itextsharp.dll
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\itextsharp.xml
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\BitMiracle.LibTiff.NET.dll
+C:\Users\aruth\Documents\GitHubVisualStudio\OLLCreator\OLLcreator\OLLcreator\bin\Debug\BitMiracle.LibTiff.NET.xml
