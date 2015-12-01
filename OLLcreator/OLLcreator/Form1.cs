@@ -37,29 +37,42 @@ namespace OLLcreator
 
         private void button_Create_Click(object sender, EventArgs e)
         {
-            create_OLL();
-        }
-
-        private void create_OLL()//TODO
-        {
-            //store all of the files in an array
-            string[] files = Directory.GetFiles(sourceFolderText);
-            MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
 
             //create oll builders
             StringBuilder sb = new StringBuilder();
-            StringBuilder sbNew = new StringBuilder();
+
+            sb = create_OLL(sb);//create the oll contents
+
+            //output oll
+            string folder = "";
+            int index = sourceFolderText.LastIndexOf('\\');
+            folder = sourceFolderText.Substring(0, index);
+
+            string[] paths = new string[] { folder, "LoadFile.oll" };
+            using (StreamWriter outfile = new StreamWriter(Path.Combine(paths)))
+            {
+                outfile.Write(sb.ToString());
+            }
+            MessageBox.Show(".OLL Created");
+        }
+
+        private StringBuilder create_OLL(StringBuilder sb)//TODO
+        {
+            //store all of the files in an array
+            string[] files = Directory.GetFiles(sourceFolderText);
+            //MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
+
+            
 
             //look at each file,check for number of pages, and send each page to format_OLL
-            for (int i = 0; i < files.Length; i++)
+            for (int i = 0; i < files.Length; i++)// TODO: Add progress bar
             {
                 //check if pdf, tiff, or other
                 FileInfo info = new FileInfo(files[i]);
                 if(info.Extension.Equals(".pdf"))//pdf
                 {
                     int pages = getNumberOfPdfPages(files[i]);//get number of pages and send to formatter
-                    sbNew = format_OLL(files[i], pages, 5, sb);
-                    sb = sbNew;
+                    sb = format_OLL(files[i], pages, 5, sb);
                 }
                 else if (info.Extension.Equals(".tiff") || info.Extension.Equals(".tif"))//tiff TODO
                 {
@@ -69,33 +82,22 @@ namespace OLLcreator
                     {
                         pages = getNumberofTiffPages(tiffFromFile);
                     }
-                    sbNew = format_OLL(files[i], pages, 1, sb);
-                    sb = sbNew;
+                    sb = format_OLL(files[i], pages, 1, sb);
                 }
-                else if (info.Extension.Equals(".mpg"))//media TODO, add other media types as well
+                else if (info.Extension.Equals(".mpg") || info.Extension.Equals(".avi") || info.Extension.Equals(".mp4") || info.Extension.Equals(".wmv"))//media TODO, add other media types as well
                 {
-
+                    sb = format_OLL(files[i], 1, 4, sb);
                 }
-                else //other (assumes everything that is other is a single page photo, could use some work)
+                else //other (assumes everything that is other is a single page photo)
                 {
                     sb = format_OLL(files[i], 1, 2, sb);
-                    sb = sbNew;
                 }
                 
                 
             }
 
-            //output oll
-            string folder = "";
-            int index = sourceFolderText.LastIndexOf('\\');
-            folder = sourceFolderText.Substring(0, index);
-
-            string[] paths = new string[] {folder, "LoadFile.oll" };
-            using (StreamWriter outfile = new StreamWriter(Path.Combine(paths)))
-            {
-                outfile.Write(sb.ToString());
-            }
-            MessageBox.Show(".OLL Created");
+            return sb;
+            
         }
 
         private StringBuilder format_OLL(string sourceFile, int pageNumber, int fileType, StringBuilder sb)//TODO
